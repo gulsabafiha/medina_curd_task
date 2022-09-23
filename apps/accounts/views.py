@@ -11,7 +11,7 @@ from rest_framework.response import Response
 #--------------------Admin register views----------------
 
 @api_view(['POST'])
-def registerAdmin(request):
+def register_admin(request):
     data=request.data
     try:
         user=Admin.objects.create(
@@ -34,7 +34,7 @@ def registerAdmin(request):
 
 
 @api_view(['POST'])
-def registerCustomer(request):
+def register_customer(request):
     data=request.data
     try:
         user=Customer.objects.create(
@@ -56,7 +56,7 @@ def registerCustomer(request):
 #-------------------Vendor and Register View----------
 
 @api_view(['POST'])
-def registerVendor(request):
+def register_vendor(request):
     data=request.data
     try:
         user=Vendor.objects.create(

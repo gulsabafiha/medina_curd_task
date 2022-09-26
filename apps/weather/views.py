@@ -1,7 +1,6 @@
 from rest_framework import viewsets
 from apps.weather.models import WeatherType
 from apps.weather.serializers import WeatherTypeSerializers
-from rest_framework.response import Response
 from django.http import Http404
 
 

@@ -5,8 +5,11 @@ from django.conf.urls.static import static
 from rest_framework import routers
 from apps.weather.views import WeatherTypeViewSet
 
+from apps.product.views import ProductTypeViewSet
+
 router = routers.DefaultRouter()
 
+router.register(r'product_type', ProductTypeViewSet, basename='product_type')
 router.register(r'weather_type', WeatherTypeViewSet, basename='weather_type')
 
 urlpatterns = [

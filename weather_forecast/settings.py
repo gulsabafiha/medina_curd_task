@@ -164,3 +164,5 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
+
+OPEN_WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather?appid=af22f988420ebca90fe6bca9de7e1f96"

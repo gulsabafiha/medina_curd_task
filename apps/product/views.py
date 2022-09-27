@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from apps.product.models import Product, ProductType
 from apps.product.serializers import ProductSerializers, ProductTypeSerializers
-from rest_framework_simplejwt.authentication import JWTTokenUserAuthentication
+from rest_framework_simplejwt.authentication import JWTTokenUserAuthentication , JWTAuthentication
 
 from django.http import Http404
 
@@ -25,16 +25,5 @@ class ProductTypeViewSet(viewsets.ModelViewSet):
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializers
-
-    # def get_permissions(self):
-    #     if self.request.method == 'GET':
-    #         self.permission_classes = [Isvendor, ]
-    #         print(self.permission_classes)
-    #     return super(ProductViewSet, self).get_permissions()
-
-    def get_permissions(self):
-        if self.action == 'list':
-            permission_classes = [Iscustomer]
-        else:
-            permission_classes = [Isvendor]
-        return [permission() for permission in permission_classes]
+    permission_classes=[Isvendor, ]
+    authentication_classes=[JWTAuthentication]

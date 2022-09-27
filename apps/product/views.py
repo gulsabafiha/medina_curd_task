@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from rest_framework import viewsets, status, filters
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -10,7 +11,7 @@ from django.http import Http404
 import requests
 
 from apps.weather.models import WeatherType
-from apps.weather.permissions import Isvendor, Iscustomer
+from apps.weather.permissions import Isvendor, Iscustomer, IsStaff
 from weather_forecast import settings
 
 
@@ -19,13 +20,8 @@ from weather_forecast import settings
 class ProductTypeViewSet(viewsets.ModelViewSet):
     queryset = ProductType.objects.all()
     serializer_class = ProductTypeSerializers
-
-    def get_queryset(self):
-        print(self.request.user.is_staff)
-        if self.request.user.is_staff:
-            return super().get_queryset()
-        else:
-            raise Http404
+    permission_classes = [IsStaff, ]
+    authentication_classes = [JWTAuthentication]
 
 
 class ProductViewSet(viewsets.ModelViewSet):

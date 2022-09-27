@@ -1,4 +1,4 @@
-from rest_framework import viewsets, status
+from rest_framework import viewsets, status, filters
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -38,6 +38,8 @@ class ProductViewSet(viewsets.ModelViewSet):
 class ProductRecommendAPIView(APIView):
     permission_classes = [Iscustomer, ]
     authentication_classes = [JWTAuthentication, ]
+    search_fields = ['name', 'weather_type__name']
+    filter_backends = (filters.SearchFilter,)
 
     def get(self, request, pk=None, format=None):
         try:
